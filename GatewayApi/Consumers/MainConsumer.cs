@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GatewayApi.Consumers
 {
-    public class MainConsumer : IConsumer<IRequestMessage>
+    public class MainConsumer : IConsumer<RequestService>
     {
-        public Task Consume(ConsumeContext<IRequestMessage> context)
+        public Task Consume(ConsumeContext<RequestService> context)
         {
             throw new NotImplementedException();
         }

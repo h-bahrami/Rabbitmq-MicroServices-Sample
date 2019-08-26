@@ -71,7 +71,7 @@ namespace GatewayApi
                 }));
             });
 
-            services.AddSingleton<IHostedService, MassTransitHost>();
+            services.AddSingleton<IHostedService, MassTransitHostedService>();
 
         }
     }

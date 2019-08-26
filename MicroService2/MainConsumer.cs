@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace MicroService2
 {
-    public class MainConsumer : IConsumer<IRequestMessage>
+    public class MainConsumer : IConsumer<RequestService>
     {
-        public Task Consume(ConsumeContext<IRequestMessage> context)
+        public Task Consume(ConsumeContext<RequestService> context)
         {
             return Task.CompletedTask;
         }

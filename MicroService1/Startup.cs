@@ -72,7 +72,7 @@ namespace MicroService1
                 
             });
 
-            
+            services.AddSingleton<IHostedService, MassTransitHostedService>();
 
         }
     }

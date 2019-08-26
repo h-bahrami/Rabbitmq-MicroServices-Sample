@@ -2,9 +2,9 @@
 
 namespace Shared
 {
-    public interface IRequestMessage
+    public interface RequestService
     {
-        public DateTime RecordTime { get; }
+        public DateTime Time { get; }
         public string Message { get; }
     }
 }

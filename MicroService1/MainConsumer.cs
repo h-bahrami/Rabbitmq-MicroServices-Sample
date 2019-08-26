@@ -5,22 +5,25 @@ using System.Threading.Tasks;
 
 namespace MicroService1
 {
-    public class MainConsumer : IConsumer<IRequestMessage>
+    public class MainConsumer : IConsumer<RequestService>
     {
-        public Task Consume(ConsumeContext<IRequestMessage> context)
+        public Task Consume(ConsumeContext<RequestService> context)
         {
-            context.Respond<IRequestMessage>(new Msg()
+            // do something here, consume the message and execute its command.
+
+            context.Publish<RequestServiceProcessed>(new Msg()
             {
-                RecordTime = DateTime.Now,
+                Time = DateTime.Now,
                 Message = typeof(MainConsumer).FullName
             });
-            return Task.CompletedTask;
+            
+            return context.ConsumeCompleted;            
         }
 
-        private class Msg : IRequestMessage
+        private class Msg : RequestServiceProcessed
         {
-            public DateTime RecordTime { get; set; }
             public string Message {get; set; }
+            public DateTime Time { get; set; }
         }
     }
 }

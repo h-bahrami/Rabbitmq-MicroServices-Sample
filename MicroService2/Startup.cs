@@ -52,7 +52,7 @@ namespace MicroService2
 
             services.AddMassTransit(x =>
             {
-                x.AddConsumer<MainConsumer>();
+                x.AddConsumer<MainConsumerSrv2>();
 
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
@@ -62,12 +62,14 @@ namespace MicroService2
                         h.Password(busConfig.Password);
                     });
 
-                    cfg.ReceiveEndpoint(host, "request-service-2", ep =>
+                    cfg.ReceiveEndpoint(host, "request-service-2-queue", ep =>
                     {
-                        ep.ConfigureConsumer<MainConsumer>(provider);
+                        ep.ConfigureConsumer<MainConsumerSrv2>(provider);
                     });
                 }));
             });
+
+            EndpointConvention.Map<GatewayCommand>(new Uri("rabbitmq://localhost/request-service-main-queue"));
 
             services.AddSingleton<IHostedService, MassTransitHostedService>();
         }

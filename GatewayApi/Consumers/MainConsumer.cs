@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GatewayApi.Consumers
 {
-    public class MainConsumer : IConsumer<RequestService>
+    public class MainConsumer : IConsumer<GatewayCommand>
     {
-        public Task Consume(ConsumeContext<RequestService> context)
+        public async Task Consume(ConsumeContext<GatewayCommand> context)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

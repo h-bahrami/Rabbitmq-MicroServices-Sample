@@ -22,7 +22,7 @@ namespace GatewayApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigureMassTransit(services);
+            ConfigureMassTransit(services);            
             services.AddControllers();
         }
 
@@ -63,13 +63,17 @@ namespace GatewayApi
                         h.Password(busConfig.Password);
                     });
 
-                    cfg.ReceiveEndpoint(host, "request-service-1", ep =>
+                    cfg.ReceiveEndpoint(host, "request-service-main-queue", ep =>
                     {                        
                         ep.ConfigureConsumer<MainConsumer>(provider);
                     });
 
                 }));
             });
+
+
+            EndpointConvention.Map<Service1Command>(new Uri("rabbitmq://localhost/request-service-1-queue"));
+            EndpointConvention.Map<Service2Command>(new Uri("rabbitmq://localhost/request-service-2-queue"));
 
             services.AddSingleton<IHostedService, MassTransitHostedService>();
 

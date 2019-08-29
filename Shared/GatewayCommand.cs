@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Shared
 {
-    public interface RequestService
+    public interface GatewayCommand 
     {
-        public DateTime Time { get; }
         public string Message { get; }
     }
 }

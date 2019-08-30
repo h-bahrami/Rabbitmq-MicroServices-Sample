@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared
 {
-    public interface GatewayCommand 
+    public interface IGatewayRequest 
     {
         public string Message { get; }
     }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GatewayApi.Consumers
 {
-    public class MainConsumer : IConsumer<GatewayCommand>
+    public class MainConsumer : IConsumer<IGatewayRequest>
     {
-        public async Task Consume(ConsumeContext<GatewayCommand> context)
+        public async Task Consume(ConsumeContext<IGatewayRequest> context)
         {
             
         }

@@ -2,7 +2,7 @@
 
 namespace Shared
 {
-    public interface RequestServiceProcessed
+    public interface ISimpleResponse
     {
         public DateTime Time { get; }
         public string Message { get; }

@@ -18,7 +18,7 @@ namespace GatewayApi.Controllers
 
         public HomeController(IBus bus)
         {
-            this.bus = bus;
+            this.bus = bus;            
         }
 
 
@@ -29,7 +29,7 @@ namespace GatewayApi.Controllers
             var start = DateTime.Now;
             for(int i = 0; i<num; i++)
             {
-                var result = await bus.Request<Service1Command, RequestServiceProcessed>(
+                var result = await bus.Request<IService1Request, ISimpleResponse>(
                     new Service1CommandImp() { Id = 100, Title = "Change the value" });
                 messages.Add(JsonConvert.SerializeObject(result.Message));
             }
@@ -42,7 +42,7 @@ namespace GatewayApi.Controllers
             });
         }
 
-        private class Service1CommandImp : Service1Command
+        private class Service1CommandImp : IService1Request
         {
             public int Id {get; set;}
 

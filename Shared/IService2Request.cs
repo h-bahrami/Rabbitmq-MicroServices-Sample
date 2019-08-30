@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared
 {
-    public interface Service2Command
+    public interface IService2Request
     {
         public int Id { get; }
 

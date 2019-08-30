@@ -72,8 +72,8 @@ namespace GatewayApi
             });
 
 
-            EndpointConvention.Map<Service1Command>(new Uri("rabbitmq://localhost/request-service-1-queue"));
-            EndpointConvention.Map<Service2Command>(new Uri("rabbitmq://localhost/request-service-2-queue"));
+            EndpointConvention.Map<IService1Request>(new Uri("rabbitmq://localhost/request-service-1-queue"));
+            EndpointConvention.Map<IService2Request>(new Uri("rabbitmq://localhost/request-service-2-queue"));
 
             services.AddSingleton<IHostedService, MassTransitHostedService>();
 

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace MicroService2
 {
-    public class MainConsumerSrv2 : IConsumer<Service2Command>
+    public class MainConsumerSrv2 : IConsumer<IService2Request>
     {
-        public Task Consume(ConsumeContext<Service2Command> context)
+        public Task Consume(ConsumeContext<IService2Request> context)
         {
-            context.Respond<RequestServiceProcessed>(
+            context.Respond<ISimpleResponse>(
                 new RequestServiceProcessedImpl()
                 {
                     Time = DateTime.Now,
@@ -23,7 +23,7 @@ namespace MicroService2
         }
     }
 
-    class RequestServiceProcessedImpl : RequestServiceProcessed
+    class RequestServiceProcessedImpl : ISimpleResponse
     {
         public DateTime Time { get; set; }
 

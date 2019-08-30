@@ -69,7 +69,7 @@ namespace MicroService2
                 }));
             });
 
-            EndpointConvention.Map<GatewayCommand>(new Uri("rabbitmq://localhost/request-service-main-queue"));
+            EndpointConvention.Map<IGatewayRequest>(new Uri("rabbitmq://localhost/request-service-main-queue"));
 
             services.AddSingleton<IHostedService, MassTransitHostedService>();
         }

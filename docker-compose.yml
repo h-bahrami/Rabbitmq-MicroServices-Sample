@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "15672:15672"
+
+  gateway:
+    image: ms_example_gateway:latest
+    build:
+      context: .
+      dockerfile: GatewayApi/Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+  
+  microservice1:
+    image: ms_example_ms1:latest
+    build:
+      context: .
+      dockerfile: MicroService1/Dockerfile
+    ports:
+      - "81:80"
+      - "444:443"
+
+  microservice2:
+    image: ms_example_ms2:latest
+    build:
+      context: .
+      dockerfile: MicroService2/Dockerfile
+    ports:
+      - "82:80"
+      - "445:443"
+
+
+
+
